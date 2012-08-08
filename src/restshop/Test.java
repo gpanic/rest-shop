@@ -25,7 +25,31 @@ public class Test {
 		WebResource service=client.resource("http://localhost:8080/rest-shop/naslovi");
 		
 		Naslov n=new Naslov();
-		n.setDrzava("VIA POST HAHA");
+		n.setDrzava("VIA PUT HAHA");
+		
+		/*
+		service.delete();
+		System.out.println("FINISHED");
+		*/
+		
+		/*
+		try {
+			JAXBContext jaxbContext=JAXBContext.newInstance(Naslov.class);
+			Marshaller jaxbMarshaller=jaxbContext.createMarshaller();
+			
+			JSONMarshaller jm=JSONJAXBContext.getJSONMarshaller(jaxbMarshaller, jaxbContext);
+			StringWriter sw=new StringWriter();
+			jm.marshallToJSON(n, sw);
+
+			ClientResponse res=service.type(MediaType.APPLICATION_JSON).put(ClientResponse.class, sw.toString());
+			System.out.println(res.toString());
+		} catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		*/
+		
 		
 		try {
 			JAXBContext jaxbContext=JAXBContext.newInstance(Naslov.class);
@@ -42,11 +66,7 @@ public class Test {
 			e.printStackTrace();
 		}
 		
-		
-		/*
-		service.type(MediaType.APPLICATION_JSON).post("asdf");
-		System.out.println("FINISHED");*/
-		
+	
 	}
 	
 }
