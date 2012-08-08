@@ -79,7 +79,7 @@ public class Uporabnik {
 
 	@Override
 	public String toString() {
-		return up_ime+" "+e_naslov;
+		return "ID: "+id_uporabnik+"Up. ime: "+up_ime+" E-posta: "+e_naslov;
 	}
 
 }

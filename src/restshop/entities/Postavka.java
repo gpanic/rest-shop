@@ -50,5 +50,10 @@ public class Postavka {
 	public void setNarocilo(Narocilo narocilo) {
 		this.narocilo = narocilo;
 	}
+	
+	@Override
+	public String toString() {
+		return "ID: "+id_postavka+" Narocilo ID: "+narocilo.getId_narocilo()+" Artikel: "+artikel.getNaziv()+" Kolicina: "+kolicina;
+	}
 
 }

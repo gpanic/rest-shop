@@ -52,7 +52,7 @@ public class Narocilo {
 	
 	@Override
 	public String toString() {
-		return id_narocilo+" "+uporabnik.getUp_ime()+" "+stanje;
+		return "ID: "+id_narocilo+" Skupaj: "+skupaj+" Stanje: "+stanje+" Uporabnik: "+uporabnik.getUp_ime();
 	}
 
 }

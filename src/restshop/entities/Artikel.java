@@ -52,7 +52,7 @@ public class Artikel {
 	
 	@Override
 	public String toString() {
-		return naziv+" "+cena;
+		return "ID: "+id_artikel+" Naziv: "+naziv+" Cena: "+cena;
 	}
 
 }

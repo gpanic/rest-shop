@@ -5,8 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
+@XmlRootElement
 public class Naslov {
 	
 	@Id
@@ -80,7 +82,7 @@ public class Naslov {
 
 	@Override
 	public String toString() {
-		return ulica+" "+posta+" "+kraj+" "+drzava;
+		return "ID: "+id_naslov+" Uporabnik: "+uporabnik.getUp_ime()+" Proizvajalec: "+proizvajalec.getIme()+" Ulica: "+ulica+" Posta: "+posta+" Kraj: "+kraj+" Drzava: "+drzava;
 	}
 
 }

@@ -5,12 +5,12 @@ import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
-import restshop.entities.Naslov;
+import restshop.entities.Artikel;
 
-public class NaslovDAO extends DAO<Naslov> {
+public class ArtikelDAO extends DAO<Artikel> {
 
 	@Override
-	public Naslov create(Naslov entity) {
+	public Artikel create(Artikel entity) {
 		em=emf.createEntityManager();
 		try {
 			em.getTransaction().begin();
@@ -23,11 +23,11 @@ public class NaslovDAO extends DAO<Naslov> {
 	}
 
 	@Override
-	public Naslov read(int id) {
-		Naslov entity;	
+	public Artikel read(int id) {
+		Artikel entity;	
 		em=emf.createEntityManager();
 		try {
-			TypedQuery<Naslov> q=em.createQuery("SELECT x FROM Naslov x WHERE x.id_naslov = :id ", Naslov.class);
+			TypedQuery<Artikel> q=em.createQuery("SELECT x FROM Artikel x WHERE x.id_artikel = :id ", Artikel.class);
 			q.setParameter("id", id);
 			entity=q.getSingleResult();
 		} catch (NoResultException e) {
@@ -39,11 +39,11 @@ public class NaslovDAO extends DAO<Naslov> {
 	}
 
 	@Override
-	public boolean update(Naslov entity) {
+	public boolean update(Artikel entity) {
 		em=emf.createEntityManager();
 		try {
-			TypedQuery<Naslov> q=em.createQuery("SELECT x FROM Naslov x WHERE x.id_naslov = :id ", Naslov.class);
-			q.setParameter("id", entity.getId_naslov());
+			TypedQuery<Artikel> q=em.createQuery("SELECT x FROM Artikel x WHERE x.id_artikel = :id ", Artikel.class);
+			q.setParameter("id", entity.getId_artikel());
 			q.getSingleResult();
 			em.getTransaction().begin();
 			em.merge(entity);
@@ -60,9 +60,9 @@ public class NaslovDAO extends DAO<Naslov> {
 	public boolean delete(int id) {
 		em=emf.createEntityManager();
 		try {
-			TypedQuery<Naslov> q=em.createQuery("SELECT x FROM Naslov x WHERE x.id_naslov = :id ", Naslov.class);
+			TypedQuery<Artikel> q=em.createQuery("SELECT x FROM Artikel x WHERE x.id_artikel = :id ", Artikel.class);
 			q.setParameter("id", id);
-			Naslov entity=q.getSingleResult();
+			Artikel entity=q.getSingleResult();
 			em.getTransaction().begin();
 			em.remove(entity);
 			em.getTransaction().commit();
@@ -75,11 +75,11 @@ public class NaslovDAO extends DAO<Naslov> {
 	}
 
 	@Override
-	public List<Naslov> list() {
-		List<Naslov> entities;
+	public List<Artikel> list() {
+		List<Artikel> entities;
 		em=emf.createEntityManager();
 		try {
-			TypedQuery<Naslov> q=em.createQuery("SELECT x FROM Naslov x ", Naslov.class);
+			TypedQuery<Artikel> q=em.createQuery("SELECT x FROM Artikel x ", Artikel.class);
 			entities=q.getResultList();
 		} catch (NoResultException e) {
 			return null;
@@ -88,4 +88,5 @@ public class NaslovDAO extends DAO<Naslov> {
 		}
 		return entities;
 	}
+
 }

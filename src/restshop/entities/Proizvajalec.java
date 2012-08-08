@@ -52,7 +52,7 @@ public class Proizvajalec {
 	
 	@Override
 	public String toString() {
-		return ime;
+		return "ID: "+id_proizvajalec+" Ime: "+ime+" WWW: "+spletna_stran;
 	}
 
 }

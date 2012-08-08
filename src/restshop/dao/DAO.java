@@ -1,5 +1,7 @@
 package restshop.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
@@ -14,12 +16,14 @@ public abstract class DAO<Entity> {
 		emf=PersistenceManager.getEntityManagerFactoryInstance();
 	}
 	
-	abstract public boolean create(Entity entity);
+	abstract public Entity create(Entity entity);
 	
 	abstract public Entity read(int id);
 	
 	abstract public boolean update(Entity entity);
 	
 	abstract public boolean delete(int id);
+	
+	abstract public List<Entity> list();
 
 }

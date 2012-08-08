@@ -5,12 +5,12 @@ import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
-import restshop.entities.Naslov;
+import restshop.entities.Proizvajalec;
 
-public class NaslovDAO extends DAO<Naslov> {
+public class ProizvajalecDAO extends DAO<Proizvajalec> {
 
 	@Override
-	public Naslov create(Naslov entity) {
+	public Proizvajalec create(Proizvajalec entity) {
 		em=emf.createEntityManager();
 		try {
 			em.getTransaction().begin();
@@ -23,12 +23,12 @@ public class NaslovDAO extends DAO<Naslov> {
 	}
 
 	@Override
-	public Naslov read(int id) {
-		Naslov entity;	
+	public Proizvajalec read(int id) {
+		Proizvajalec entity;	
 		em=emf.createEntityManager();
 		try {
-			TypedQuery<Naslov> q=em.createQuery("SELECT x FROM Naslov x WHERE x.id_naslov = :id ", Naslov.class);
-			q.setParameter("id", id);
+			TypedQuery<Proizvajalec> q=em.createQuery("SELECT x FROM Proizvajalec x WHERE x.id_proizvajalec = :id_proizvajalec ", Proizvajalec.class);
+			q.setParameter("id_proizvajalec", id);
 			entity=q.getSingleResult();
 		} catch (NoResultException e) {
 			return null;
@@ -39,11 +39,11 @@ public class NaslovDAO extends DAO<Naslov> {
 	}
 
 	@Override
-	public boolean update(Naslov entity) {
+	public boolean update(Proizvajalec entity) {
 		em=emf.createEntityManager();
 		try {
-			TypedQuery<Naslov> q=em.createQuery("SELECT x FROM Naslov x WHERE x.id_naslov = :id ", Naslov.class);
-			q.setParameter("id", entity.getId_naslov());
+			TypedQuery<Proizvajalec> q=em.createQuery("SELECT x FROM Proizvajalec x WHERE x.id_proizvajalec = :id ", Proizvajalec.class);
+			q.setParameter("id", entity.getId_proizvajalec());
 			q.getSingleResult();
 			em.getTransaction().begin();
 			em.merge(entity);
@@ -60,9 +60,9 @@ public class NaslovDAO extends DAO<Naslov> {
 	public boolean delete(int id) {
 		em=emf.createEntityManager();
 		try {
-			TypedQuery<Naslov> q=em.createQuery("SELECT x FROM Naslov x WHERE x.id_naslov = :id ", Naslov.class);
+			TypedQuery<Proizvajalec> q=em.createQuery("SELECT x FROM Proizvajalec x WHERE x.id_proizvajalec = :id ", Proizvajalec.class);
 			q.setParameter("id", id);
-			Naslov entity=q.getSingleResult();
+			Proizvajalec entity=q.getSingleResult();
 			em.getTransaction().begin();
 			em.remove(entity);
 			em.getTransaction().commit();
@@ -75,11 +75,11 @@ public class NaslovDAO extends DAO<Naslov> {
 	}
 
 	@Override
-	public List<Naslov> list() {
-		List<Naslov> entities;
+	public List<Proizvajalec> list() {
+		List<Proizvajalec> entities;
 		em=emf.createEntityManager();
 		try {
-			TypedQuery<Naslov> q=em.createQuery("SELECT x FROM Naslov x ", Naslov.class);
+			TypedQuery<Proizvajalec> q=em.createQuery("SELECT x FROM Proizvajalec x ", Proizvajalec.class);
 			entities=q.getResultList();
 		} catch (NoResultException e) {
 			return null;
@@ -88,4 +88,5 @@ public class NaslovDAO extends DAO<Naslov> {
 		}
 		return entities;
 	}
+
 }
