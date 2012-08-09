@@ -5,8 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
+@XmlRootElement
 public class Artikel {
 	
 	@Id
@@ -18,6 +21,7 @@ public class Artikel {
 	@ManyToOne
 	private Proizvajalec proizvajalec;
 
+	@XmlAttribute
 	public Long getId_artikel() {
 		return id_artikel;
 	}

@@ -2,11 +2,12 @@ package restshop.entities.lists;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import restshop.entities.Naslov;
 
-@XmlRootElement
+@XmlRootElement(name="naslovi")
 public class NaslovList {
 	
 	private List<Naslov> naslovi;
@@ -18,6 +19,7 @@ public class NaslovList {
 		this.naslovi = naslovi;
 	}
 	
+	@XmlElement(name="naslov")
 	public List<Naslov> getNaslovi() {
 		return naslovi;
 	}

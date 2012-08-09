@@ -5,8 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
+@XmlRootElement
 public class Postavka {
 	
 	@Id
@@ -19,6 +22,7 @@ public class Postavka {
 	@ManyToOne
 	private Narocilo narocilo;
 	
+	@XmlElement
 	public Long getId_postavka() {
 		return id_postavka;
 	}

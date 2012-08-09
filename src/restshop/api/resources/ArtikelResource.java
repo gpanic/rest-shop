@@ -14,65 +14,64 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 
-import restshop.dao.NaslovDAO;
-import restshop.entities.Naslov;
-import restshop.entities.lists.NaslovList;
+import restshop.dao.ArtikelDAO;
+import restshop.entities.Artikel;
+import restshop.entities.lists.ArtikelList;
 
-@Path("/naslovi")
-public class NaslovResource extends Resource<Naslov> {
-
-	NaslovDAO ndao=new NaslovDAO();
+public class ArtikelResource extends Resource<Artikel> {
 	
+	ArtikelDAO adao=new ArtikelDAO();
+
 	@POST
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Response create(Naslov entity) {
-		ndao.create(entity);
+	public Response create(Artikel entity) {
+		adao.create(entity);
 		UriBuilder ub=uriInfo.getBaseUriBuilder();
-		URI uri=ub.path(NaslovResource.class).path(Integer.toString(entity.getId_naslov().intValue())).build();
+		URI uri=ub.path(NaslovResource.class).path(Integer.toString(entity.getId_artikel().intValue())).build();
 		return Response.created(uri).build();
 	}
-	
+
 	@GET
 	@Path("/{id}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response read(@PathParam("id") int id) {
-		Naslov entity=ndao.read(id);
+		Artikel entity=adao.read(id);
 		if(entity!=null) {
 			return Response.ok(entity).build();
 		} else {
 			return Response.status(404).build();
 		}
 	}
-	
+
 	@PUT
 	@Path("/{id}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Response update(@PathParam("id") int id, Naslov entity) {
-		entity.setId_naslov(new Long(id));
-		boolean updated=ndao.update(entity);
+	public Response update(@PathParam("id") int id, Artikel entity) {
+		entity.setId_artikel(new Long(id));
+		boolean updated=adao.update(entity);
 		if(updated) {
 			return Response.ok().build();
 		} else {
 			return Response.status(404).build();
 		}
 	}
-	
+
 	@DELETE
 	@Path("/{id}")
 	public Response delete(@PathParam("id") int id) {
-		boolean deleted=ndao.delete(id);
+		boolean deleted=adao.delete(id);
 		if(deleted) {
 			return Response.ok().build();
 		} else {
 			return Response.status(404).build();
 		}
 	}
-	
+
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response list() {
-		NaslovList list=new NaslovList(ndao.list());
+		ArtikelList list=new ArtikelList(adao.list());
 		return Response.ok(list).build();
 	}
-	
+
 }
