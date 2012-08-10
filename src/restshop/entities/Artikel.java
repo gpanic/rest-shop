@@ -21,6 +21,9 @@ public class Artikel {
 	@ManyToOne
 	private Proizvajalec proizvajalec;
 
+	public Artikel() {
+	}
+	
 	@XmlAttribute
 	public Long getId_artikel() {
 		return id_artikel;
@@ -53,7 +56,7 @@ public class Artikel {
 	public void setProizvajalec(Proizvajalec proizvajalec) {
 		this.proizvajalec = proizvajalec;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "ID: "+id_artikel+" Naziv: "+naziv+" Cena: "+cena;

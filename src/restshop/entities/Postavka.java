@@ -22,6 +22,9 @@ public class Postavka {
 	@ManyToOne
 	private Narocilo narocilo;
 	
+	public Postavka() {
+	}
+	
 	@XmlElement
 	public Long getId_postavka() {
 		return id_postavka;

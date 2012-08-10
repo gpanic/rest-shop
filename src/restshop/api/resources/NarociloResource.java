@@ -18,6 +18,7 @@ import restshop.dao.NarociloDAO;
 import restshop.entities.Narocilo;
 import restshop.entities.lists.NarociloList;
 
+@Path("/narocila")
 public class NarociloResource extends Resource<Narocilo> {
 	
 	NarociloDAO ndao=new NarociloDAO();

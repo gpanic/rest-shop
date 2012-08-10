@@ -20,6 +20,9 @@ public class Proizvajalec {
 	
 	@OneToOne
 	private Naslov naslov;
+	
+	public Proizvajalec() {
+	}
 
 	@XmlAttribute
 	public Long getId_proizvajalec() {

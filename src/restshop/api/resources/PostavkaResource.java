@@ -18,6 +18,7 @@ import restshop.dao.PostavkaDAO;
 import restshop.entities.Postavka;
 import restshop.entities.lists.PostavkaList;
 
+@Path("/postavke")
 public class PostavkaResource extends Resource<Postavka> {
 	
 	PostavkaDAO pdao=new PostavkaDAO();

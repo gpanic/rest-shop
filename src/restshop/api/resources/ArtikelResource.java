@@ -18,6 +18,7 @@ import restshop.dao.ArtikelDAO;
 import restshop.entities.Artikel;
 import restshop.entities.lists.ArtikelList;
 
+@Path("/artikli")
 public class ArtikelResource extends Resource<Artikel> {
 	
 	ArtikelDAO adao=new ArtikelDAO();

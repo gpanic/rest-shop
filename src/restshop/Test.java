@@ -50,8 +50,12 @@ public class Test {
 		Client client=Client.create();
 		WebResource service=client.resource("http://localhost:8080/rest-shop/proizvajalci/1");
 		
+		Naslov n2=new Naslov();
+		n2.setId_naslov(new Long(3));
+		
 		Proizvajalec n=new Proizvajalec();
 		n.setIme("nekiproizvajalec PUT");
+		n.setNaslov(n2);
 		
 		try {
 			JAXBContext jaxbContext=JAXBContext.newInstance(Uporabnik.class);
@@ -60,9 +64,11 @@ public class Test {
 			JSONMarshaller jm=JSONJAXBContext.getJSONMarshaller(jaxbMarshaller);
 			StringWriter sw=new StringWriter();
 			jm.marshallToJSON(n, sw);
+			
+			System.out.println(sw);
 
-			ClientResponse res=service.type(MediaType.APPLICATION_JSON).put(ClientResponse.class, sw.toString());
-			System.out.println(res);
+			//ClientResponse res=service.type(MediaType.APPLICATION_JSON).put(ClientResponse.class, sw.toString());
+			//System.out.println(res);
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

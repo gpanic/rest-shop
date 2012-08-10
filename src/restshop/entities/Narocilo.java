@@ -20,7 +20,10 @@ public class Narocilo {
 	
 	@ManyToOne
 	private Uporabnik uporabnik;
-
+	
+	public Narocilo() {
+	}
+	
 	@XmlAttribute
 	public Long getId_narocilo() {
 		return id_narocilo;
@@ -53,7 +56,7 @@ public class Narocilo {
 	public void setUporabnik(Uporabnik uporabnik) {
 		this.uporabnik = uporabnik;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "ID: "+id_narocilo+" Skupaj: "+skupaj+" Stanje: "+stanje+" Uporabnik: "+uporabnik.getUp_ime();

@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -19,11 +18,6 @@ public class Naslov {
 	private int posta;
 	private String kraj;
 	private String drzava;
-	
-	@OneToOne(mappedBy="naslov")
-	private Uporabnik uporabnik;
-	@OneToOne(mappedBy="naslov")
-	private Proizvajalec proizvajalec;
 	
 	public Naslov() {
 	}
@@ -69,25 +63,9 @@ public class Naslov {
 		this.drzava = drzava;
 	}
 
-	public Uporabnik getUporabnik() {
-		return uporabnik;
-	}
-
-	public void setUporabnik(Uporabnik uporabnik) {
-		this.uporabnik = uporabnik;
-	}
-
-	public Proizvajalec getProizvajalec() {
-		return proizvajalec;
-	}
-
-	public void setProizvajalec(Proizvajalec proizvajalec) {
-		this.proizvajalec = proizvajalec;
-	}
-
 	@Override
 	public String toString() {
-		return "ID: "+id_naslov+" Uporabnik: "+uporabnik.getUp_ime()+" Proizvajalec: "+proizvajalec.getIme()+" Ulica: "+ulica+" Posta: "+posta+" Kraj: "+kraj+" Drzava: "+drzava;
+		return "ID: "+id_naslov+" Ulica: "+ulica+" Posta: "+posta+" Kraj: "+kraj+" Drzava: "+drzava;
 	}
 
 }
