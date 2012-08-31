@@ -28,7 +28,7 @@ public class NarociloResource extends Resource<Narocilo> {
 	public Response create(Narocilo entity) {
 		ndao.create(entity);
 		UriBuilder ub=uriInfo.getBaseUriBuilder();
-		URI uri=ub.path(NaslovResource.class).path(Integer.toString(entity.getId_narocilo().intValue())).build();
+		URI uri=ub.path(NarociloResource.class).path(Integer.toString(entity.getId_narocilo().intValue())).build();
 		return Response.created(uri).build();
 	}
 

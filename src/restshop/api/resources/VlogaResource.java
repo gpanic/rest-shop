@@ -8,35 +8,34 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 
-import restshop.dao.PostavkaDAO;
-import restshop.entities.Postavka;
-import restshop.entities.lists.PostavkaList;
+import restshop.dao.VlogaDAO;
+import restshop.entities.Vloga;
+import restshop.entities.lists.VlogaList;
 
-@Path("/postavke")
-public class PostavkaResource extends Resource<Postavka> {
+@Path("/vloge")
+public class VlogaResource extends Resource<Vloga> {
 	
-	PostavkaDAO pdao=new PostavkaDAO();
+	VlogaDAO vdao=new VlogaDAO();
 
 	@POST
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Response create(Postavka entity) {
-		pdao.create(entity);
+	public Response create(Vloga entity) {
+		vdao.create(entity);
 		UriBuilder ub=uriInfo.getBaseUriBuilder();
-		URI uri=ub.path(PostavkaResource.class).path(Integer.toString(entity.getId_postavka().intValue())).build();
+		URI uri=ub.path(VlogaResource.class).path(Integer.toString(entity.getId_vloga().intValue())).build();
 		return Response.created(uri).build();
 	}
 
 	@GET
 	@Path("/{id}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Response read(@PathParam("id") int id) {
-		Postavka entity=pdao.read(id);
+	public Response read(int id) {
+		Vloga entity=vdao.read(id);
 		if(entity!=null) {
 			return Response.ok(entity).build();
 		} else {
@@ -47,9 +46,9 @@ public class PostavkaResource extends Resource<Postavka> {
 	@PUT
 	@Path("/{id}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Response update(@PathParam("id") int id, Postavka entity) {
-		entity.setId_postavka(new Long(id));
-		boolean updated=pdao.update(entity);
+	public Response update(int id, Vloga entity) {
+		entity.setId_vloga(new Long(id));
+		boolean updated=vdao.update(entity);
 		if(updated) {
 			return Response.ok().build();
 		} else {
@@ -59,8 +58,8 @@ public class PostavkaResource extends Resource<Postavka> {
 
 	@DELETE
 	@Path("/{id}")
-	public Response delete(@PathParam("id") int id) {
-		boolean deleted=pdao.delete(id);
+	public Response delete(int id) {
+		boolean deleted=vdao.delete(id);
 		if(deleted) {
 			return Response.ok().build();
 		} else {
@@ -71,7 +70,7 @@ public class PostavkaResource extends Resource<Postavka> {
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response list() {
-		PostavkaList list=new PostavkaList(pdao.list());
+		VlogaList list=new VlogaList(vdao.list());
 		return Response.ok(list).build();
 	}
 

@@ -28,7 +28,7 @@ public class ArtikelResource extends Resource<Artikel> {
 	public Response create(Artikel entity) {
 		adao.create(entity);
 		UriBuilder ub=uriInfo.getBaseUriBuilder();
-		URI uri=ub.path(NaslovResource.class).path(Integer.toString(entity.getId_artikel().intValue())).build();
+		URI uri=ub.path(ArtikelResource.class).path(Integer.toString(entity.getId_artikel().intValue())).build();
 		return Response.created(uri).build();
 	}
 

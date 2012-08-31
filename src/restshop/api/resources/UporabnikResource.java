@@ -28,7 +28,7 @@ public class UporabnikResource extends Resource<Uporabnik> {
 	public Response create(Uporabnik entity) {
 		udao.create(entity);
 		UriBuilder ub=uriInfo.getBaseUriBuilder();
-		URI uri=ub.path(NaslovResource.class).path(Integer.toString(entity.getId_uporabnik().intValue())).build();
+		URI uri=ub.path(UporabnikResource.class).path(Integer.toString(entity.getId_uporabnik().intValue())).build();
 		return Response.created(uri).build();
 	}
 

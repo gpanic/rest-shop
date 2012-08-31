@@ -28,7 +28,7 @@ public class ProizvajalecResource extends Resource<Proizvajalec> {
 	public Response create(Proizvajalec entity) {
 		pdao.create(entity);
 		UriBuilder ub=uriInfo.getBaseUriBuilder();
-		URI uri=ub.path(NaslovResource.class).path(Integer.toString(entity.getId_proizvajalec().intValue())).build();
+		URI uri=ub.path(ProizvajalecResource.class).path(Integer.toString(entity.getId_proizvajalec().intValue())).build();
 		return Response.created(uri).build();
 	}
 

@@ -9,6 +9,7 @@
 		<class>restshop.entities.Artikel</class>
 		<class>restshop.entities.Narocilo</class>
 		<class>restshop.entities.Postavka</class>
+		<class>restshop.entities.Vloga</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/restshop" />
