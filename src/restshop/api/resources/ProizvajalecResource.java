@@ -28,8 +28,8 @@ public class ProizvajalecResource extends Resource<Proizvajalec> {
 	public Response create(Proizvajalec entity) {
 		pdao.create(entity);
 		UriBuilder ub=uriInfo.getBaseUriBuilder();
-		URI uri=ub.path(ProizvajalecResource.class).path(Integer.toString(entity.getId_proizvajalec().intValue())).build();
-		return Response.created(uri).build();
+		URI uri=ub.path(ProizvajalecResource.class).path(Integer.toString(entity.getId_proizvajalec())).build();
+		return Response.created(uri).entity(entity).build();
 	}
 
 	@GET
@@ -48,10 +48,10 @@ public class ProizvajalecResource extends Resource<Proizvajalec> {
 	@Path("/{id}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response update(@PathParam("id") int id, Proizvajalec entity) {
-		entity.setId_proizvajalec(new Long(id));
+		entity.setId_proizvajalec(id);
 		boolean updated=pdao.update(entity);
 		if(updated) {
-			return Response.ok().build();
+			return Response.ok().entity("Resource updated").build();
 		} else {
 			return Response.status(404).build();
 		}
@@ -62,7 +62,7 @@ public class ProizvajalecResource extends Resource<Proizvajalec> {
 	public Response delete(@PathParam("id") int id) {
 		boolean deleted=pdao.delete(id);
 		if(deleted) {
-			return Response.ok().build();
+			return Response.ok().entity("Resource deleted").build();
 		} else {
 			return Response.status(404).build();
 		}

@@ -28,8 +28,8 @@ public class NaslovResource extends Resource<Naslov> {
 	public Response create(Naslov entity) {
 		ndao.create(entity);
 		UriBuilder ub=uriInfo.getBaseUriBuilder();
-		URI uri=ub.path(NaslovResource.class).path(Integer.toString(entity.getId_naslov().intValue())).build();
-		return Response.created(uri).build();
+		URI uri=ub.path(NaslovResource.class).path(Integer.toString(entity.getId_naslov())).build();
+		return Response.created(uri).entity(entity).build();
 	}
 	
 	@GET
@@ -38,7 +38,7 @@ public class NaslovResource extends Resource<Naslov> {
 	public Response read(@PathParam("id") int id) {
 		Naslov entity=ndao.read(id);
 		if(entity!=null) {
-			return Response.ok(entity).build();
+			return Response.ok().entity("Resource updated").build();
 		} else {
 			return Response.status(404).build();
 		}
@@ -48,7 +48,7 @@ public class NaslovResource extends Resource<Naslov> {
 	@Path("/{id}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response update(@PathParam("id") int id, Naslov entity) {
-		entity.setId_naslov(new Long(id));
+		entity.setId_naslov(id);
 		boolean updated=ndao.update(entity);
 		if(updated) {
 			return Response.ok().build();
@@ -62,7 +62,7 @@ public class NaslovResource extends Resource<Naslov> {
 	public Response delete(@PathParam("id") int id) {
 		boolean deleted=ndao.delete(id);
 		if(deleted) {
-			return Response.ok().build();
+			return Response.ok().entity("Resource deleted").build();
 		} else {
 			return Response.status(404).build();
 		}

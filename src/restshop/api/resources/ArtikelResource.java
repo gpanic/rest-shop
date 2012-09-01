@@ -28,8 +28,8 @@ public class ArtikelResource extends Resource<Artikel> {
 	public Response create(Artikel entity) {
 		adao.create(entity);
 		UriBuilder ub=uriInfo.getBaseUriBuilder();
-		URI uri=ub.path(ArtikelResource.class).path(Integer.toString(entity.getId_artikel().intValue())).build();
-		return Response.created(uri).build();
+		URI uri=ub.path(ArtikelResource.class).path(Integer.toString(entity.getId_artikel())).build();
+		return Response.created(uri).entity(entity).build();
 	}
 
 	@GET
@@ -48,10 +48,10 @@ public class ArtikelResource extends Resource<Artikel> {
 	@Path("/{id}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response update(@PathParam("id") int id, Artikel entity) {
-		entity.setId_artikel(new Long(id));
+		entity.setId_artikel(id);
 		boolean updated=adao.update(entity);
 		if(updated) {
-			return Response.ok().build();
+			return Response.ok().entity("Resource updated").build();
 		} else {
 			return Response.status(404).build();
 		}
@@ -62,7 +62,7 @@ public class ArtikelResource extends Resource<Artikel> {
 	public Response delete(@PathParam("id") int id) {
 		boolean deleted=adao.delete(id);
 		if(deleted) {
-			return Response.ok().build();
+			return Response.ok().entity("Resource deleted").build();
 		} else {
 			return Response.status(404).build();
 		}

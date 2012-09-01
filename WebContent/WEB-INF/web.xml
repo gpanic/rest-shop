@@ -10,4 +10,28 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <security-constraint>
+  	<display-name>Secure Place</display-name>
+  	<web-resource-collection>
+  		<web-resource-name>Secure Place</web-resource-name>
+  		<url-pattern>/*</url-pattern>
+  	</web-resource-collection>
+  	<auth-constraint>
+  		<role-name>admin</role-name>
+  	</auth-constraint>
+  </security-constraint>
+  
+  <login-config>
+  	<auth-method>BASIC</auth-method>
+  	<realm-name>RESTShopRealm</realm-name>
+  </login-config>
+  
+  <security-role>
+  	<role-name>admin</role-name>
+  </security-role>
+  <security-role>
+  	<role-name>uporabnik</role-name>
+  </security-role>
+
 </web-app>

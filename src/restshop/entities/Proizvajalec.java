@@ -14,7 +14,7 @@ public class Proizvajalec {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id_proizvajalec;
+	private int id_proizvajalec;
 	private String ime;
 	private String spletna_stran;
 	
@@ -25,11 +25,11 @@ public class Proizvajalec {
 	}
 
 	@XmlAttribute
-	public Long getId_proizvajalec() {
+	public int getId_proizvajalec() {
 		return id_proizvajalec;
 	}
 
-	public void setId_proizvajalec(Long id_proizvajalec) {
+	public void setId_proizvajalec(int id_proizvajalec) {
 		this.id_proizvajalec = id_proizvajalec;
 	}
 

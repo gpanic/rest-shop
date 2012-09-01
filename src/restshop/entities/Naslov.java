@@ -13,7 +13,7 @@ public class Naslov {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id_naslov;
+	private int id_naslov;
 	private String ulica;
 	private int posta;
 	private String kraj;
@@ -23,11 +23,11 @@ public class Naslov {
 	}
 	
 	@XmlAttribute
-	public Long getId_naslov() {
+	public int getId_naslov() {
 		return id_naslov;
 	}
 
-	public void setId_naslov(Long id_naslov) {
+	public void setId_naslov(int id_naslov) {
 		this.id_naslov = id_naslov;
 	}
 

@@ -14,7 +14,7 @@ public class Narocilo {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id_narocilo;
+	private int id_narocilo;
 	private double skupaj;
 	private String stanje;
 	
@@ -25,11 +25,11 @@ public class Narocilo {
 	}
 	
 	@XmlAttribute
-	public Long getId_narocilo() {
+	public int getId_narocilo() {
 		return id_narocilo;
 	}
 	
-	public void setId_narocilo(Long id_narocilo) {
+	public void setId_narocilo(int id_narocilo) {
 		this.id_narocilo = id_narocilo;
 	}
 

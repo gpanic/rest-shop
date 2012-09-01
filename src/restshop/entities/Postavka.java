@@ -14,7 +14,7 @@ public class Postavka {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id_postavka;
+	private int id_postavka;
 	private int kolicina;
 	
 	@ManyToOne
@@ -26,11 +26,11 @@ public class Postavka {
 	}
 	
 	@XmlElement
-	public Long getId_postavka() {
+	public int getId_postavka() {
 		return id_postavka;
 	}
 	
-	public void setId_postavka(Long id_postavka) {
+	public void setId_postavka(int id_postavka) {
 		this.id_postavka = id_postavka;
 	}
 	

@@ -14,7 +14,7 @@ public class Artikel {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id_artikel;
+	private int id_artikel;
 	private String naziv;
 	private Double cena;
 	
@@ -25,11 +25,11 @@ public class Artikel {
 	}
 	
 	@XmlAttribute
-	public Long getId_artikel() {
+	public int getId_artikel() {
 		return id_artikel;
 	}
 
-	public void setId_artikel(Long id_artikel) {
+	public void setId_artikel(int id_artikel) {
 		this.id_artikel = id_artikel;
 	}
 

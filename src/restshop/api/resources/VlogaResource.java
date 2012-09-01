@@ -8,6 +8,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -27,14 +28,14 @@ public class VlogaResource extends Resource<Vloga> {
 	public Response create(Vloga entity) {
 		vdao.create(entity);
 		UriBuilder ub=uriInfo.getBaseUriBuilder();
-		URI uri=ub.path(VlogaResource.class).path(Integer.toString(entity.getId_vloga().intValue())).build();
-		return Response.created(uri).build();
+		URI uri=ub.path(VlogaResource.class).path(entity.getNaziv()).build();
+		return Response.created(uri).entity(entity).build();
 	}
 
 	@GET
 	@Path("/{id}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Response read(int id) {
+	public Response read(@PathParam("id") int id) {
 		Vloga entity=vdao.read(id);
 		if(entity!=null) {
 			return Response.ok(entity).build();
@@ -46,11 +47,11 @@ public class VlogaResource extends Resource<Vloga> {
 	@PUT
 	@Path("/{id}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Response update(int id, Vloga entity) {
-		entity.setId_vloga(new Long(id));
+	public Response update(@PathParam("id") int id, Vloga entity) {
+		//entity.setId_vloga(new Long(id));
 		boolean updated=vdao.update(entity);
 		if(updated) {
-			return Response.ok().build();
+			return Response.ok().entity("Resource updated").build();
 		} else {
 			return Response.status(404).build();
 		}
@@ -58,10 +59,10 @@ public class VlogaResource extends Resource<Vloga> {
 
 	@DELETE
 	@Path("/{id}")
-	public Response delete(int id) {
+	public Response delete(@PathParam("id") int id) {
 		boolean deleted=vdao.delete(id);
 		if(deleted) {
-			return Response.ok().build();
+			return Response.ok().entity("Resource deleted").build();
 		} else {
 			return Response.status(404).build();
 		}

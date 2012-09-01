@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
@@ -13,19 +12,18 @@ public class Vloga {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id_vloga;
+	private int id_vloga;
 	private String naziv;
 	private String opis;
 	
 	public Vloga() {
 	}
-	
-	@XmlAttribute
-	public Long getId_vloga() {
+
+	public int getId_vloga() {
 		return id_vloga;
 	}
-	
-	public void setId_vloga(Long id_vloga) {
+
+	public void setId_vloga(int id_vloga) {
 		this.id_vloga = id_vloga;
 	}
 

@@ -51,7 +51,7 @@ public class Test {
 		WebResource service=client.resource("http://localhost:8080/rest-shop/proizvajalci/1");
 		
 		Naslov n2=new Naslov();
-		n2.setId_naslov(new Long(3));
+		n2.setId_naslov(3);
 		
 		Proizvajalec n=new Proizvajalec();
 		n.setIme("nekiproizvajalec PUT");

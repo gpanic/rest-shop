@@ -28,8 +28,8 @@ public class PostavkaResource extends Resource<Postavka> {
 	public Response create(Postavka entity) {
 		pdao.create(entity);
 		UriBuilder ub=uriInfo.getBaseUriBuilder();
-		URI uri=ub.path(PostavkaResource.class).path(Integer.toString(entity.getId_postavka().intValue())).build();
-		return Response.created(uri).build();
+		URI uri=ub.path(PostavkaResource.class).path(Integer.toString(entity.getId_postavka())).build();
+		return Response.created(uri).entity(entity).build();
 	}
 
 	@GET
@@ -48,10 +48,10 @@ public class PostavkaResource extends Resource<Postavka> {
 	@Path("/{id}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response update(@PathParam("id") int id, Postavka entity) {
-		entity.setId_postavka(new Long(id));
+		entity.setId_postavka(id);
 		boolean updated=pdao.update(entity);
 		if(updated) {
-			return Response.ok().build();
+			return Response.ok().entity("Resource updated").build();
 		} else {
 			return Response.status(404).build();
 		}
@@ -62,7 +62,7 @@ public class PostavkaResource extends Resource<Postavka> {
 	public Response delete(@PathParam("id") int id) {
 		boolean deleted=pdao.delete(id);
 		if(deleted) {
-			return Response.ok().build();
+			return Response.ok().entity("Resource deleted").build();
 		} else {
 			return Response.status(404).build();
 		}

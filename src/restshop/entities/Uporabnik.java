@@ -4,10 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
@@ -16,7 +14,7 @@ public class Uporabnik {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id_uporabnik;
+	private int id_uporabnik;
 	private String up_ime;
 	private String e_naslov;
 	private String geslo;
@@ -25,18 +23,16 @@ public class Uporabnik {
 		
 	@OneToOne
 	private Naslov naslov;
-	@ManyToOne
-	private Vloga vloga;
 	
 	public Uporabnik() {
 	}
 	
 	@XmlAttribute
-	public Long getId_uporabnik() {
+	public int getId_uporabnik() {
 		return id_uporabnik;
 	}
 
-	public void setId_uporabnik(Long id_uporabnik) {
+	public void setId_uporabnik(int id_uporabnik) {
 		this.id_uporabnik = id_uporabnik;
 	}
 
@@ -86,14 +82,6 @@ public class Uporabnik {
 
 	public void setNaslov(Naslov naslov) {
 		this.naslov = naslov;
-	}
-	
-	public Vloga getVloga() {
-		return vloga;
-	}
-
-	public void setVloga(Vloga vloga) {
-		this.vloga = vloga;
 	}
 
 	@Override

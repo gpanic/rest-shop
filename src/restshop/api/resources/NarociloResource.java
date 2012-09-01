@@ -28,8 +28,8 @@ public class NarociloResource extends Resource<Narocilo> {
 	public Response create(Narocilo entity) {
 		ndao.create(entity);
 		UriBuilder ub=uriInfo.getBaseUriBuilder();
-		URI uri=ub.path(NarociloResource.class).path(Integer.toString(entity.getId_narocilo().intValue())).build();
-		return Response.created(uri).build();
+		URI uri=ub.path(NarociloResource.class).path(Integer.toString(entity.getId_narocilo())).build();
+		return Response.created(uri).entity(entity).build();
 	}
 
 	@GET
@@ -48,10 +48,10 @@ public class NarociloResource extends Resource<Narocilo> {
 	@Path("/{id}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response update(@PathParam("id") int id, Narocilo entity) {
-		entity.setId_narocilo(new Long(id));
+		entity.setId_narocilo(id);
 		boolean updated=ndao.update(entity);
 		if(updated) {
-			return Response.ok().build();
+			return Response.ok().entity("Resource updated").build();
 		} else {
 			return Response.status(404).build();
 		}
@@ -62,7 +62,7 @@ public class NarociloResource extends Resource<Narocilo> {
 	public Response delete(@PathParam("id") int id) {
 		boolean deleted=ndao.delete(id);
 		if(deleted) {
-			return Response.ok().build();
+			return Response.ok().entity("Resource deleted").build();
 		} else {
 			return Response.status(404).build();
 		}
