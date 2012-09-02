@@ -10,12 +10,145 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
+
+  <!-- ARTIKEL -->
   <security-constraint>
-  	<display-name>Secure Place</display-name>
+  	<display-name>Secure /artikli</display-name>
   	<web-resource-collection>
-  		<web-resource-name>Secure Place</web-resource-name>
-  		<url-pattern>/*</url-pattern>
+  		<web-resource-name>Artikel</web-resource-name>
+  		<url-pattern>/api/artikli/*</url-pattern>
+  		<http-method-omission>GET</http-method-omission>
+  	</web-resource-collection>
+  	<auth-constraint>
+  		<role-name>admin</role-name>
+  	</auth-constraint>
+  </security-constraint>
+  <security-constraint>
+  	<display-name>Secure /artikli</display-name>
+  	<web-resource-collection>
+  		<web-resource-name>Artikel</web-resource-name>
+  		<url-pattern>/api/artikli/*</url-pattern>
+  		<http-method>GET</http-method>
+  	</web-resource-collection>
+  	<auth-constraint>
+  		<role-name>uporabnik</role-name>
+  		<role-name>admin</role-name>
+  	</auth-constraint>
+  </security-constraint>
+
+  <!-- NAROCILO -->
+  <security-constraint>
+  	<display-name>Secure /narocila</display-name>
+  	<web-resource-collection>
+  		<web-resource-name>Narocilo</web-resource-name>
+  		<url-pattern>/api/narocila/*</url-pattern>
+  	</web-resource-collection>
+  	<auth-constraint>
+  		<role-name>admin</role-name>
+  	</auth-constraint>
+  </security-constraint>
+  <security-constraint>
+  	<display-name>Secure /narocila</display-name>
+  	<web-resource-collection>
+  		<web-resource-name>Narocilo</web-resource-name>
+  		<url-pattern>/api/narocila/*</url-pattern>
+  		<http-method>GET</http-method>
+  		<http-method>POST</http-method>
+  	</web-resource-collection>
+  	<auth-constraint>
+  		<role-name>admin</role-name>
+  		<role-name>uporabnik</role-name>
+  	</auth-constraint>
+  </security-constraint>
+
+  <!-- POSTAVKA -->
+  <security-constraint>
+  	<display-name>Secure /postavke</display-name>
+  	<web-resource-collection>
+  		<web-resource-name>Postavka</web-resource-name>
+  		<url-pattern>/api/postavke/*</url-pattern>
+  	</web-resource-collection>
+  	<auth-constraint>
+  		<role-name>admin</role-name>
+  	</auth-constraint>
+  </security-constraint>
+  <security-constraint>
+  	<display-name>Secure /postavke</display-name>
+  	<web-resource-collection>
+  		<web-resource-name>Postavka</web-resource-name>
+  		<url-pattern>/api/postavke/*</url-pattern>
+  		<http-method>GET</http-method>
+  		<http-method>POST</http-method>
+  	</web-resource-collection>
+  	<auth-constraint>
+  		<role-name>admin</role-name>
+  		<role-name>uporabnik</role-name>
+  	</auth-constraint>
+  </security-constraint>
+
+  <!-- PROIZVAJALEC -->
+  <security-constraint>
+  	<display-name>Secure /proizvajalci</display-name>
+  	<web-resource-collection>
+  		<web-resource-name>Proizvajalec</web-resource-name>
+  		<url-pattern>/api/proizvajalci/*</url-pattern>
+  		<http-method-omission>GET</http-method-omission>
+  	</web-resource-collection>
+  	<auth-constraint>
+  		<role-name>admin</role-name>
+  	</auth-constraint>
+  </security-constraint>
+  <security-constraint>
+  	<display-name>Secure /proizvajalci</display-name>
+  	<web-resource-collection>
+  		<web-resource-name>Proizvajalec</web-resource-name>
+  		<url-pattern>/api/proizvajalci/*</url-pattern>
+  		<http-method>GET</http-method>
+  	</web-resource-collection>
+  	<auth-constraint>
+  		<role-name>uporabnik</role-name>
+  		<role-name>admin</role-name>
+  	</auth-constraint>
+  </security-constraint>
+
+  <!-- UPORABNIK -->
+  <security-constraint>
+  	<display-name>Secure /uporabniki</display-name>
+  	<web-resource-collection>
+  		<web-resource-name>Uporabnik</web-resource-name>
+  		<url-pattern>/api/uporabniki/*</url-pattern>
+  	</web-resource-collection>
+  	<auth-constraint>
+  		<role-name>admin</role-name>
+  	</auth-constraint>
+  </security-constraint>
+  <security-constraint>
+  	<display-name>Secure /uporabniki</display-name>
+  	<web-resource-collection>
+  		<web-resource-name>Uporabnik</web-resource-name>
+  		<url-pattern>/api/uporabniki/*</url-pattern>
+  		<http-method>POST</http-method>
+  	</web-resource-collection>
+  </security-constraint>  
+
+  <!-- UPORABNIKVLOGA -->
+  <security-constraint>
+  	<display-name>Secure /uporabnik_vloge</display-name>
+  	<web-resource-collection>
+  		<web-resource-name>UporabnikVloga</web-resource-name>
+  		<url-pattern>/api/uporabnik_vloge/*</url-pattern>
+  	</web-resource-collection>
+  	<auth-constraint>
+  		<role-name>admin</role-name>
+  	</auth-constraint>
+  </security-constraint>
+
+  <!-- VLOGA -->
+  <security-constraint>
+  	<display-name>Secure /vloge</display-name>
+  	<web-resource-collection>
+  		<web-resource-name>Vloga</web-resource-name>
+  		<url-pattern>/api/vloge/*</url-pattern>
   	</web-resource-collection>
   	<auth-constraint>
   		<role-name>admin</role-name>
