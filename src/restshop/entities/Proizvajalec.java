@@ -56,10 +56,5 @@ public class Proizvajalec {
 	public void setNaslov(Naslov naslov) {
 		this.naslov = naslov;
 	}
-	
-	@Override
-	public String toString() {
-		return "ID: "+id_proizvajalec+" Ime: "+ime+" WWW: "+spletna_stran;
-	}
 
 }

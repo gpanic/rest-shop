@@ -17,7 +17,6 @@
   	<web-resource-collection>
   		<web-resource-name>Artikel</web-resource-name>
   		<url-pattern>/api/artikli/*</url-pattern>
-  		<http-method-omission>GET</http-method-omission>
   	</web-resource-collection>
   	<auth-constraint>
   		<role-name>admin</role-name>
@@ -53,11 +52,37 @@
   		<web-resource-name>Narocilo</web-resource-name>
   		<url-pattern>/api/narocila/*</url-pattern>
   		<http-method>GET</http-method>
+  		<http-method>PUT</http-method>
   		<http-method>POST</http-method>
+  		<http-method>DELETE</http-method>
   	</web-resource-collection>
   	<auth-constraint>
   		<role-name>admin</role-name>
   		<role-name>uporabnik</role-name>
+  	</auth-constraint>
+  </security-constraint>
+
+  <!-- NASLOV -->
+  <security-constraint>
+  	<display-name>Secure /naslovi</display-name>
+  	<web-resource-collection>
+  		<web-resource-name>Naslov</web-resource-name>
+  		<url-pattern>/api/naslovi/*</url-pattern>
+  	</web-resource-collection>
+  	<auth-constraint>
+  		<role-name>admin</role-name>
+  	</auth-constraint>
+  </security-constraint>
+  <security-constraint>
+  	<display-name>Secure /naslovi</display-name>
+  	<web-resource-collection>
+  		<web-resource-name>Naslov</web-resource-name>
+  		<url-pattern>/api/naslovi/*</url-pattern>
+  		<http-method>GET</http-method>
+  	</web-resource-collection>
+  	<auth-constraint>
+  		<role-name>uporabnik</role-name>
+  		<role-name>admin</role-name>
   	</auth-constraint>
   </security-constraint>
 
@@ -78,7 +103,9 @@
   		<web-resource-name>Postavka</web-resource-name>
   		<url-pattern>/api/postavke/*</url-pattern>
   		<http-method>GET</http-method>
+  		<http-method>PUT</http-method>
   		<http-method>POST</http-method>
+  		<http-method>DELETE</http-method>
   	</web-resource-collection>
   	<auth-constraint>
   		<role-name>admin</role-name>
@@ -92,7 +119,6 @@
   	<web-resource-collection>
   		<web-resource-name>Proizvajalec</web-resource-name>
   		<url-pattern>/api/proizvajalci/*</url-pattern>
-  		<http-method-omission>GET</http-method-omission>
   	</web-resource-collection>
   	<auth-constraint>
   		<role-name>admin</role-name>
@@ -107,6 +133,18 @@
   	</web-resource-collection>
   	<auth-constraint>
   		<role-name>uporabnik</role-name>
+  		<role-name>admin</role-name>
+  	</auth-constraint>
+  </security-constraint>
+
+  <!-- STANJE -->
+  <security-constraint>
+  	<display-name>Secure /stanja</display-name>
+  	<web-resource-collection>
+  		<web-resource-name>Stanje</web-resource-name>
+  		<url-pattern>/api/stanja/*</url-pattern>
+  	</web-resource-collection>
+  	<auth-constraint>
   		<role-name>admin</role-name>
   	</auth-constraint>
   </security-constraint>

@@ -8,6 +8,11 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
+import restshop.dao.ArtikelDAO;
+import restshop.dao.NaslovDAO;
+import restshop.dao.ProizvajalecDAO;
+import restshop.dao.UporabnikDAO;
+import restshop.entities.Artikel;
 import restshop.entities.Naslov;
 import restshop.entities.Proizvajalec;
 import restshop.entities.Uporabnik;
@@ -46,7 +51,7 @@ public class Test {
 		}
 		
 		*/
-		
+		/*
 		Client client=Client.create();
 		WebResource service=client.resource("http://localhost:8080/rest-shop/proizvajalci/1");
 		
@@ -72,7 +77,20 @@ public class Test {
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
+		
+		ArtikelDAO adao=new ArtikelDAO();
+		ProizvajalecDAO pdao=new ProizvajalecDAO();
+		Proizvajalec p=new Proizvajalec();
+		p.setIme("asdf");
+		Artikel a=adao.read(1);
+		a.setNaziv("prekotesta80");
+		a.setProizvajalec(p);
+		System.out.println(adao.update(a));
+		
+		
+		System.out.println("KONCAL");
+		
 	
 	}
 	

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
+import restshop.entities.Naslov;
 import restshop.entities.Proizvajalec;
 
 public class ProizvajalecDAO extends DAO<Proizvajalec> {
@@ -44,9 +45,21 @@ public class ProizvajalecDAO extends DAO<Proizvajalec> {
 		try {
 			TypedQuery<Proizvajalec> q=em.createQuery("SELECT x FROM Proizvajalec x WHERE x.id_proizvajalec = :id ", Proizvajalec.class);
 			q.setParameter("id", entity.getId_proizvajalec());
-			q.getSingleResult();
+			Proizvajalec old=q.getSingleResult();
+			
+			Naslov n=null;
+			try {
+				TypedQuery<Naslov> q2=em.createQuery("SELECT x FROM Naslov x WHERE x.id_naslov = :id ", Naslov.class);
+				q2.setParameter("id", entity.getNaslov().getId_naslov());
+				n=q2.getSingleResult();
+			} catch (NoResultException e) {
+				
+			}
+
 			em.getTransaction().begin();
-			em.merge(entity);
+			old.setIme(entity.getIme());
+			old.setNaslov(n);
+			old.setSpletna_stran(entity.getSpletna_stran());
 			em.getTransaction().commit();
 		} catch (NoResultException e) {
 			return false;

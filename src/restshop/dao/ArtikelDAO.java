@@ -6,6 +6,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import restshop.entities.Artikel;
+import restshop.entities.Proizvajalec;
 
 public class ArtikelDAO extends DAO<Artikel> {
 
@@ -44,9 +45,21 @@ public class ArtikelDAO extends DAO<Artikel> {
 		try {
 			TypedQuery<Artikel> q=em.createQuery("SELECT x FROM Artikel x WHERE x.id_artikel = :id ", Artikel.class);
 			q.setParameter("id", entity.getId_artikel());
-			q.getSingleResult();
+			Artikel old=q.getSingleResult();
+			
+			Proizvajalec p=null;
+			try {
+				TypedQuery<Proizvajalec> q2=em.createQuery("SELECT x FROM Proizvajalec x WHERE x.id_proizvajalec = :id ", Proizvajalec.class);
+				q2.setParameter("id", entity.getProizvajalec().getId_proizvajalec());
+				p=q2.getSingleResult();
+			} catch (NoResultException e) {
+				
+			}
+
 			em.getTransaction().begin();
-			em.merge(entity);
+			old.setCena(entity.getCena());
+			old.setNaziv(entity.getNaziv());
+			old.setProizvajalec(p);
 			em.getTransaction().commit();
 		} catch (NoResultException e) {
 			return false;

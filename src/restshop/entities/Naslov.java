@@ -63,9 +63,4 @@ public class Naslov {
 		this.drzava = drzava;
 	}
 
-	@Override
-	public String toString() {
-		return "ID: "+id_naslov+" Ulica: "+ulica+" Posta: "+posta+" Kraj: "+kraj+" Drzava: "+drzava;
-	}
-
 }

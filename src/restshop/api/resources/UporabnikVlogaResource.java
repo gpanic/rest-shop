@@ -10,8 +10,10 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriBuilder;
 
 import restshop.dao.UporabnikDAO;
@@ -29,7 +31,7 @@ public class UporabnikVlogaResource extends Resource<UporabnikVloga> {
 
 	@POST
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Response create(UporabnikVloga entity) {
+	public Response create(@Context SecurityContext sc, UporabnikVloga entity) {
 		String uporabnik_up_ime=udao.read(entity.getUporabnik().getId_uporabnik()).getUp_ime();
 		String vloga_naziv=vdao.read(entity.getVloga().getId_vloga()).getNaziv();
 		entity.setUp_ime(uporabnik_up_ime);
@@ -43,7 +45,7 @@ public class UporabnikVlogaResource extends Resource<UporabnikVloga> {
 	@GET
 	@Path("/{id}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Response read(@PathParam("id") int id) {
+	public Response read(@Context SecurityContext sc, @PathParam("id") int id) {
 		UporabnikVloga entity=uvdao.read(id);
 		if(entity!=null) {
 			return Response.ok(entity).build();
@@ -55,7 +57,7 @@ public class UporabnikVlogaResource extends Resource<UporabnikVloga> {
 	@PUT
 	@Path("/{id}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Response update(@PathParam("id") int id, UporabnikVloga entity) {
+	public Response update(@Context SecurityContext sc, @PathParam("id") int id, UporabnikVloga entity) {
 		String uporabnik_up_ime=udao.read(entity.getUporabnik().getId_uporabnik()).getUp_ime();
 		String vloga_naziv=vdao.read(entity.getVloga().getId_vloga()).getNaziv();
 		if(uporabnik_up_ime!=null && vloga_naziv!=null) {
@@ -75,7 +77,7 @@ public class UporabnikVlogaResource extends Resource<UporabnikVloga> {
 
 	@DELETE
 	@Path("/{id}")
-	public Response delete(@PathParam("id") int id) {
+	public Response delete(@Context SecurityContext sc, @PathParam("id") int id) {
 		boolean deleted=uvdao.delete(id);
 		if(deleted) {
 			return Response.ok().entity("Resource deleted").build();
@@ -86,7 +88,7 @@ public class UporabnikVlogaResource extends Resource<UporabnikVloga> {
 
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Response list() {
+	public Response list(@Context SecurityContext sc) {
 		UporabnikVlogaList list=new UporabnikVlogaList(uvdao.list());
 		return Response.ok(list).build();
 	}

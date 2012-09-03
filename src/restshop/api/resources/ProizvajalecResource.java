@@ -10,8 +10,10 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriBuilder;
 
 import restshop.dao.ProizvajalecDAO;
@@ -25,7 +27,7 @@ public class ProizvajalecResource extends Resource<Proizvajalec> {
 
 	@POST
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Response create(Proizvajalec entity) {
+	public Response create(@Context SecurityContext sc, Proizvajalec entity) {
 		pdao.create(entity);
 		UriBuilder ub=uriInfo.getBaseUriBuilder();
 		URI uri=ub.path(ProizvajalecResource.class).path(Integer.toString(entity.getId_proizvajalec())).build();
@@ -35,7 +37,7 @@ public class ProizvajalecResource extends Resource<Proizvajalec> {
 	@GET
 	@Path("/{id}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Response read(@PathParam("id") int id) {
+	public Response read(@Context SecurityContext sc, @PathParam("id") int id) {
 		Proizvajalec entity=pdao.read(id);
 		if(entity!=null) {
 			return Response.ok(entity).build();
@@ -47,7 +49,7 @@ public class ProizvajalecResource extends Resource<Proizvajalec> {
 	@PUT
 	@Path("/{id}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Response update(@PathParam("id") int id, Proizvajalec entity) {
+	public Response update(@Context SecurityContext sc, @PathParam("id") int id, Proizvajalec entity) {
 		entity.setId_proizvajalec(id);
 		boolean updated=pdao.update(entity);
 		if(updated) {
@@ -59,7 +61,7 @@ public class ProizvajalecResource extends Resource<Proizvajalec> {
 
 	@DELETE
 	@Path("/{id}")
-	public Response delete(@PathParam("id") int id) {
+	public Response delete(@Context SecurityContext sc, @PathParam("id") int id) {
 		boolean deleted=pdao.delete(id);
 		if(deleted) {
 			return Response.ok().entity("Resource deleted").build();
@@ -70,7 +72,7 @@ public class ProizvajalecResource extends Resource<Proizvajalec> {
 
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Response list() {
+	public Response list(@Context SecurityContext sc) {
 		ProizvajalecList list=new ProizvajalecList(pdao.list());
 		return Response.ok(list).build();
 	}

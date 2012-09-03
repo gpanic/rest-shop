@@ -44,9 +44,11 @@ public class VlogaDAO extends DAO<Vloga> {
 		try {
 			TypedQuery<Vloga> q=em.createQuery("SELECT x FROM Vloga x WHERE x.id_vloga = :id ", Vloga.class);
 			q.setParameter("id", entity.getId_vloga());
-			q.getSingleResult();
+			Vloga old=q.getSingleResult();
+			
 			em.getTransaction().begin();
-			em.merge(entity);
+			old.setNaziv(entity.getNaziv());
+			old.setOpis(entity.getOpis());
 			em.getTransaction().commit();
 		} catch (NoResultException e) {
 			return false;

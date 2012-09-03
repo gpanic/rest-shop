@@ -11,6 +11,7 @@
 		<class>restshop.entities.Postavka</class>
 		<class>restshop.entities.Vloga</class>
 		<class>restshop.entities.UporabnikVloga</class>
+		<class>restshop.entities.Stanje</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/restshop" />

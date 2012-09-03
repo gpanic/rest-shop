@@ -65,10 +65,5 @@ public class UporabnikVloga {
 	public void setUporabnik(Uporabnik uporabnik) {
 		this.uporabnik = uporabnik;
 	}
-	
-	@Override
-	public String toString() {
-		return "ID: "+id_uporabnikvloga+" up_ime: "+up_ime+" vloga: "+naziv;
-	}
 
 }

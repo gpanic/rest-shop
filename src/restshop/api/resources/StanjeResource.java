@@ -16,25 +16,25 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriBuilder;
 
-import restshop.dao.UporabnikDAO;
-import restshop.entities.Uporabnik;
-import restshop.entities.lists.UporabnikList;
+import restshop.dao.StanjeDAO;
+import restshop.entities.Stanje;
+import restshop.entities.lists.StanjeList;
 
-@Path("/uporabniki")
-public class UporabnikResource extends Resource<Uporabnik> {
+@Path("/stanja")
+public class StanjeResource extends Resource<Stanje> {
 	
-	UporabnikDAO udao=new UporabnikDAO();
+	StanjeDAO sdao=new StanjeDAO();
 
 	@POST
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Response create(@Context SecurityContext sc, Uporabnik entity) {
-		Uporabnik u=udao.create(entity);
-		if(u!=null) {
+	public Response create(@Context SecurityContext sc, Stanje entity) {
+		Stanje s=sdao.create(entity);
+		if(s!=null) {
 			UriBuilder ub=uriInfo.getBaseUriBuilder();
-			URI uri=ub.path(UporabnikResource.class).path(Integer.toString(entity.getId_uporabnik())).build();
+			URI uri=ub.path(StanjeResource.class).path(Integer.toString(entity.getId_stanje())).build();
 			return Response.created(uri).entity(entity).build();
 		} else {
-			return Response.status(400).entity("Username not provided or already exists").build();
+			return Response.status(400).entity("State not provided or already exists").build();
 		}
 	}
 
@@ -42,7 +42,7 @@ public class UporabnikResource extends Resource<Uporabnik> {
 	@Path("/{id}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response read(@Context SecurityContext sc, @PathParam("id") int id) {
-		Uporabnik entity=udao.read(id);
+		Stanje entity=sdao.read(id);
 		if(entity!=null) {
 			return Response.ok(entity).build();
 		} else {
@@ -53,9 +53,9 @@ public class UporabnikResource extends Resource<Uporabnik> {
 	@PUT
 	@Path("/{id}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Response update(@Context SecurityContext sc, @PathParam("id") int id, Uporabnik entity) {
-		entity.setId_uporabnik(id);
-		boolean updated=udao.update(entity);
+	public Response update(@Context SecurityContext sc, @PathParam("id") int id, Stanje entity) {
+		entity.setId_stanje(id);
+		boolean updated=sdao.update(entity);
 		if(updated) {
 			return Response.ok().entity("Resource updated").build();
 		} else {
@@ -66,18 +66,18 @@ public class UporabnikResource extends Resource<Uporabnik> {
 	@DELETE
 	@Path("/{id}")
 	public Response delete(@Context SecurityContext sc, @PathParam("id") int id) {
-		boolean deleted=udao.delete(id);
+		boolean deleted=sdao.delete(id);
 		if(deleted) {
 			return Response.ok().entity("Resource deleted").build();
 		} else {
 			return Response.status(404).build();
 		}
 	}
-	
+
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response list(@Context SecurityContext sc) {
-		UporabnikList list=new UporabnikList(udao.list());
+		StanjeList list=new StanjeList(sdao.list());
 		return Response.ok(list).build();
 	}
 

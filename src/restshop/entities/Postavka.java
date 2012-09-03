@@ -17,9 +17,9 @@ public class Postavka {
 	private int id_postavka;
 	private int kolicina;
 	
-	@ManyToOne
+	@ManyToOne(optional=false)
 	private Artikel artikel;
-	@ManyToOne
+	@ManyToOne(optional=false)
 	private Narocilo narocilo;
 	
 	public Postavka() {
@@ -56,11 +56,6 @@ public class Postavka {
 	
 	public void setNarocilo(Narocilo narocilo) {
 		this.narocilo = narocilo;
-	}
-	
-	@Override
-	public String toString() {
-		return "ID: "+id_postavka+" Narocilo ID: "+narocilo.getId_narocilo()+" Artikel: "+artikel.getNaziv()+" Kolicina: "+kolicina;
 	}
 
 }

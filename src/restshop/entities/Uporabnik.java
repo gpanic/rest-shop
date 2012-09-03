@@ -1,5 +1,6 @@
 package restshop.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +16,7 @@ public class Uporabnik {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id_uporabnik;
+	@Column(unique=true, nullable=false)
 	private String up_ime;
 	private String e_naslov;
 	private String geslo;
@@ -82,11 +84,6 @@ public class Uporabnik {
 
 	public void setNaslov(Naslov naslov) {
 		this.naslov = naslov;
-	}
-
-	@Override
-	public String toString() {
-		return "ID: "+id_uporabnik+"Up. ime: "+up_ime+" E-posta: "+e_naslov;
 	}
 
 }

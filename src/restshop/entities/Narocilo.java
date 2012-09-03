@@ -15,10 +15,10 @@ public class Narocilo {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id_narocilo;
-	private double skupaj;
-	private String stanje;
 	
-	@ManyToOne
+	@ManyToOne(optional=false)
+	private Stanje stanje;
+	@ManyToOne(optional=false)
 	private Uporabnik uporabnik;
 	
 	public Narocilo() {
@@ -33,19 +33,11 @@ public class Narocilo {
 		this.id_narocilo = id_narocilo;
 	}
 
-	public double getSkupaj() {
-		return skupaj;
-	}
-
-	public void setSkupaj(double skupaj) {
-		this.skupaj = skupaj;
-	}
-
-	public String getStanje() {
+	public Stanje getStanje() {
 		return stanje;
 	}
 
-	public void setStanje(String stanje) {
+	public void setStanje(Stanje stanje) {
 		this.stanje = stanje;
 	}
 
@@ -55,11 +47,6 @@ public class Narocilo {
 
 	public void setUporabnik(Uporabnik uporabnik) {
 		this.uporabnik = uporabnik;
-	}
-
-	@Override
-	public String toString() {
-		return "ID: "+id_narocilo+" Skupaj: "+skupaj+" Stanje: "+stanje+" Uporabnik: "+uporabnik.getUp_ime();
 	}
 
 }

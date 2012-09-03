@@ -44,9 +44,13 @@ public class NaslovDAO extends DAO<Naslov> {
 		try {
 			TypedQuery<Naslov> q=em.createQuery("SELECT x FROM Naslov x WHERE x.id_naslov = :id ", Naslov.class);
 			q.setParameter("id", entity.getId_naslov());
-			q.getSingleResult();
+			Naslov old=q.getSingleResult();
+
 			em.getTransaction().begin();
-			em.merge(entity);
+			old.setDrzava(entity.getDrzava());
+			old.setKraj(entity.getKraj());
+			old.setPosta(entity.getPosta());
+			old.setUlica(entity.getUlica());
 			em.getTransaction().commit();
 		} catch (NoResultException e) {
 			return false;

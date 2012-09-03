@@ -57,9 +57,4 @@ public class Artikel {
 		this.proizvajalec = proizvajalec;
 	}
 
-	@Override
-	public String toString() {
-		return "ID: "+id_artikel+" Naziv: "+naziv+" Cena: "+cena;
-	}
-
 }
