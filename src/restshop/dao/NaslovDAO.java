@@ -1,11 +1,13 @@
 package restshop.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import restshop.entities.Naslov;
+import restshop.entities.Uporabnik;
 
 public class NaslovDAO extends DAO<Naslov> {
 
@@ -85,6 +87,23 @@ public class NaslovDAO extends DAO<Naslov> {
 		try {
 			TypedQuery<Naslov> q=em.createQuery("SELECT x FROM Naslov x ", Naslov.class);
 			entities=q.getResultList();
+		} catch (NoResultException e) {
+			return null;
+		} finally {
+			em.close();
+		}
+		return entities;
+	}
+	
+	public List<Naslov> list(int id_uporabnik) {
+		List<Naslov> entities;
+		em=emf.createEntityManager();
+		try {
+			TypedQuery<Uporabnik> q=em.createQuery("SELECT x FROM Uporabnik x where x.id_uporabnik = :id ", Uporabnik.class);
+			q.setParameter("id", id_uporabnik);
+			Uporabnik u=q.getSingleResult();
+			entities=new ArrayList<Naslov>();
+			entities.add(u.getNaslov());
 		} catch (NoResultException e) {
 			return null;
 		} finally {

@@ -78,7 +78,7 @@ public class NarociloResource extends Resource<Narocilo> {
 				if(old.getStanje().getId_stanje()==1 && entity.getStanje().getId_stanje()==2) {
 					updated=ndao.update(entity);
 				} else {
-					return Response.ok().entity("State invalid or missing").build();
+					return Response.status(400).entity("State invalid or missing").build();
 				}
 			}
 		}

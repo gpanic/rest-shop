@@ -69,7 +69,7 @@ public class UporabnikDAO extends DAO<Uporabnik> {
 	public boolean update(Uporabnik entity) {
 		em=emf.createEntityManager();
 		try {
-			TypedQuery<Uporabnik> q=em.createQuery("SELECT x FROM Uporabnik x WHERE x.id_zporabnik = :id ", Uporabnik.class);
+			TypedQuery<Uporabnik> q=em.createQuery("SELECT x FROM Uporabnik x WHERE x.id_uporabnik = :id ", Uporabnik.class);
 			q.setParameter("id", entity.getId_uporabnik());
 			Uporabnik old=q.getSingleResult();
 			
@@ -84,9 +84,9 @@ public class UporabnikDAO extends DAO<Uporabnik> {
 
 			em.getTransaction().begin();
 			old.setE_naslov(entity.getE_naslov());
+			old.setNaslov(n);
 			old.setGeslo(entity.getGeslo());
 			old.setIme(entity.getIme());
-			old.setNaslov(n);
 			old.setPriimek(entity.getPriimek());
 			em.getTransaction().commit();
 		} catch (NoResultException e) {

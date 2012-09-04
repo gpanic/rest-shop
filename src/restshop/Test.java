@@ -16,6 +16,7 @@ import restshop.entities.Artikel;
 import restshop.entities.Naslov;
 import restshop.entities.Proizvajalec;
 import restshop.entities.Uporabnik;
+import restshop.security.Hasher;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
@@ -78,18 +79,6 @@ public class Test {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
-		
-		ArtikelDAO adao=new ArtikelDAO();
-		ProizvajalecDAO pdao=new ProizvajalecDAO();
-		Proizvajalec p=new Proizvajalec();
-		p.setIme("asdf");
-		Artikel a=adao.read(1);
-		a.setNaziv("prekotesta80");
-		a.setProizvajalec(p);
-		System.out.println(adao.update(a));
-		
-		
-		System.out.println("KONCAL");
 		
 	
 	}

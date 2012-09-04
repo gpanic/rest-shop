@@ -79,6 +79,8 @@
   		<web-resource-name>Naslov</web-resource-name>
   		<url-pattern>/api/naslovi/*</url-pattern>
   		<http-method>GET</http-method>
+  		<http-method>PUT</http-method>
+  		<http-method>POST</http-method>
   	</web-resource-collection>
   	<auth-constraint>
   		<role-name>uporabnik</role-name>
@@ -157,6 +159,19 @@
   		<url-pattern>/api/uporabniki/*</url-pattern>
   	</web-resource-collection>
   	<auth-constraint>
+  		<role-name>admin</role-name>
+  	</auth-constraint>
+  </security-constraint>
+  <security-constraint>
+  	<display-name>Secure /aruporabnikitikli</display-name>
+  	<web-resource-collection>
+  		<web-resource-name>Uporabnik</web-resource-name>
+  		<url-pattern>/api/uporabniki/*</url-pattern>
+  		<http-method>GET</http-method>
+  		<http-method>PUT</http-method>
+  	</web-resource-collection>
+  	<auth-constraint>
+  		<role-name>uporabnik</role-name>
   		<role-name>admin</role-name>
   	</auth-constraint>
   </security-constraint>
